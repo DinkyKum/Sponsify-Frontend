@@ -9,7 +9,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* Company Info */}
           <div className="col-span-1 md:col-span-2">
-            <h3 className="text-2xl font-bold text-white mb-4">SponsorConnect</h3>
+            <h3 className="text-2xl font-bold text-white mb-4">Sponsify</h3>
             <p className="text-gray-400 mb-4 max-w-md">
               Connecting event organizers with sponsors to create successful partnerships and memorable events.
             </p>
@@ -93,7 +93,7 @@ const Footer = () => {
               <div className="flex items-center">
                 <Mail className="w-5 h-5 text-emerald-400 mr-2" />
                 <a href="mailto:info@sponsorconnect.com" className="text-gray-400 hover:text-emerald-400 transition-colors">
-                  info@sponsorconnect.com
+                  info@sponsify.com
                 </a>
               </div>
             </div>
@@ -103,7 +103,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="border-t border-gray-800 pt-8 mt-8 text-center">
           <p className="text-gray-400">
-            © {new Date().getFullYear()} SponsorConnect. All rights reserved.
+            © {new Date().getFullYear()} Sponsify. All rights reserved.
           </p>
         </div>
       </div>

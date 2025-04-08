@@ -5,30 +5,26 @@ import { motion } from "framer-motion";
 import { FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
-const SponsorList = () => {
-  const [sponsors, setSponsors] = useState([]);
+const OrganizerList = () => {
+  const [organizers, setOrganizers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchSponsors = async () => {
+    const fetchOrganizers = async () => {
       try {
-        const response = await axios.get(BASE_URL + "/viewSponsors");
-        setSponsors(response.data);
+        const response = await axios.get(BASE_URL + "/viewOrganizers");
+        setOrganizers(response.data);
         setLoading(false);
       } catch (err) {
-        setError("Failed to load sponsors. Please try again.");
+        setError("Failed to load organizers. Please try again.");
         setLoading(false);
       }
     };
 
-    fetchSponsors();
+    fetchOrganizers();
   }, []);
-
-  const handleCardClick = (id) => {
-    navigate(`/sponsor/${id}`);
-  };
 
   return (
     <motion.div
@@ -43,8 +39,10 @@ const SponsorList = () => {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 1 }}
       >
-        Meet Our Sponsors
+        Meet Our Organizers
       </motion.h1>
+
+      {error && <p className="text-red-400 text-center mb-4">{error}</p>}
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
         {loading
@@ -60,30 +58,40 @@ const SponsorList = () => {
                 <div className="h-4 bg-gray-600 rounded w-2/3 mx-auto"></div>
               </motion.div>
             ))
-          : sponsors.map((sponsor, index) => (
+          : organizers.map((organizer, index) => (
               <motion.div
                 key={index}
-                className="bg-gray-800 rounded-2xl shadow-lg p-4 cursor-pointer transition transform"
+                onClick={() => navigate(`/organizer/${organizer._id}`)}
+                className="cursor-pointer bg-gray-800 rounded-2xl shadow-lg p-4 transition transform"
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: index * 0.3 }}
-                whileHover={{ scale: 1.04, boxShadow: "0px 4px 15px rgba(0, 255, 127, 0.5)" }}
+                transition={{ duration: 1, delay: index * 0.5 }}
+                whileHover={{
+                  scale: 1.04,
+                  boxShadow: "0px 4px 15px rgba(0, 255, 127, 0.5)",
+                }}
                 whileTap={{ scale: 0.98 }}
-                onClick={() => handleCardClick(sponsor._id)}
               >
+                {/* Organizer Logo */}
                 <motion.div className="w-full">
                   <motion.img
-                    src={sponsor.logo}
-                    alt={sponsor.name}
+                    src={organizer.logo}
+                    alt={organizer.name}
                     className="w-full h-48 object-cover rounded-lg border-2 border-emerald-500 shadow-md"
                     whileHover={{ scale: 1.02 }}
                     transition={{ duration: 0.6 }}
                   />
                 </motion.div>
 
-                <h2 className="text-xl font-semibold text-center mt-4">{sponsor.name}</h2>
-                <p className="text-gray-400 text-sm text-center">{sponsor.about}</p>
+                {/* Organizer Name */}
+                <h2 className="text-xl font-semibold text-center mt-4">
+                  {organizer.name}
+                </h2>
 
+                {/* Organizer About */}
+                <p className="text-gray-400 text-sm text-center">{organizer.about}</p>
+
+                {/* Contact Details */}
                 <motion.div
                   className="mt-4 flex flex-col items-center space-y-2"
                   initial={{ opacity: 0 }}
@@ -91,10 +99,10 @@ const SponsorList = () => {
                   transition={{ delay: 0.6, duration: 1.2 }}
                 >
                   <p className="text-lg flex items-center gap-2 text-emerald-400">
-                    <FaEnvelope className="text-xl" /> {sponsor.emailId}
+                    <FaEnvelope className="text-xl" /> {organizer.emailId}
                   </p>
                   <p className="text-lg flex items-center gap-2 text-emerald-400">
-                    <FaMapMarkerAlt className="text-xl" /> {sponsor.address}
+                    <FaMapMarkerAlt className="text-xl" /> {organizer.address}
                   </p>
                 </motion.div>
               </motion.div>
@@ -104,4 +112,4 @@ const SponsorList = () => {
   );
 };
 
-export default SponsorList;
+export default OrganizerList;
