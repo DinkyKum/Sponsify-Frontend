@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../utils/constants";
 
 const sponsorshipOptions = [
@@ -9,10 +9,10 @@ const sponsorshipOptions = [
   "T-shirts + Goodies",
   "Cash Prizes",
   "Stalls",
-   "Food and Beverages",
-   "Media Coverage",
-   "Social Media Promotion",
-   "Internship Opportunities",
+  "Food and Beverages",
+  "Media Coverage",
+  "Social Media Promotion",
+  "Internship Opportunities",
 ];
 
 const AddEvent = () => {
@@ -51,14 +51,18 @@ const AddEvent = () => {
       const payload = {
         ...formData,
         budget: parseInt(formData.budget),
-        attendees: [parseInt(formData.attendees)],
+        attendees: parseInt(formData.attendees),
       };
 
       await axios.post(`${BASE_URL}/addEvent`, payload, { withCredentials: true });
 
-      navigate(`/organizer/${id}`);
+      // Optional: Redirect after successful event creation
+      // navigate(`/organizer/${id}`);
+
+      alert("Event added successfully!");
     } catch (error) {
-      alert("Error adding event: " + error.response?.data || error.message);
+      console.log("Error object:", error);
+      alert("Error adding event: " + (error.response?.data || error.message));
     } finally {
       setLoading(false);
     }

@@ -52,7 +52,7 @@ const SponsorDashboard = () => {
 
   const attendeesData = sponsor.events.map((event) => ({
     label: event.name,
-    value: event.attendees[0],
+    value: event.attendees,
   }));
 
   return (
@@ -132,7 +132,7 @@ const SponsorDashboard = () => {
             </p>
             <p className="text-sm text-emerald-400 mb-1">
               Attendees:{" "}
-              <span className="text-white">{event.attendees[0]}</span>
+              <span className="text-white">{event.attendees}</span>
             </p>
             <p className="text-sm text-emerald-400">
               Sponsorship Methods:{" "}

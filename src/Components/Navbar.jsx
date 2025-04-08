@@ -33,6 +33,7 @@ const Navbar = () => {
           <li><Link to="/sponsors" className="hover:text-emerald-400 transition">Top Sponsors</Link></li>
           <li><Link to="/events" className="hover:text-emerald-400 transition">Find Events</Link></li>
           <li><Link to="/organizers" className="hover:text-emerald-400 transition">Meet Organizers</Link></li>
+          <li><Link to="/deals" className="hover:text-emerald-400 transition">My Deals</Link></li>
         </ul>
 
         {!user ? (

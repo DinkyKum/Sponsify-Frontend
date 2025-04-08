@@ -4,7 +4,7 @@ import { Outlet } from 'react-router'
 import FooterSec from './Footer'
 
 const Body = () => {
-
+  
   return (
     <div>
         <Navbar/>

@@ -37,7 +37,7 @@ const OrganizerDashboard = () => {
       name: event.name,
       date: event.date,
       budget: event.budget,
-      attendees: event.attendees[0] || 0,
+      attendees: event.attendees,
     }));
   };
 
@@ -57,7 +57,9 @@ const OrganizerDashboard = () => {
           <div>
             <h1 className="text-4xl font-bold text-emerald-400">{organizer.name}</h1>
             <p className="text-gray-300 mt-2 max-w-xl">{organizer.about}</p>
-            <p className="text-sm text-gray-500 mt-1">{organizer.emailId} | {organizer.address}</p>
+            <p className="text-sm text-gray-500 mt-1">
+              {organizer.emailId} | {organizer.address}
+            </p>
           </div>
         </div>
         <button
@@ -107,16 +109,33 @@ const OrganizerDashboard = () => {
         <h2 className="text-2xl font-semibold mb-6">Events Organized</h2>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {organizer.events.map((event) => (
-            <div key={event._id} className="bg-gray-800 rounded-xl p-5 shadow-md hover:shadow-emerald-500/40">
-              <img src={event.logo} alt={event.name} className="w-full h-40 object-cover rounded-lg mb-4" />
+            <div
+              key={event._id}
+              onClick={() => navigate(`/event/${event._id}`)}
+              className="cursor-pointer bg-gray-800 rounded-xl p-5 shadow-md hover:shadow-emerald-500/40 transition-shadow duration-200"
+            >
+              <img
+                src={event.logo}
+                alt={event.name}
+                className="w-full h-40 object-cover rounded-lg mb-4"
+              />
               <h3 className="text-xl font-bold mb-1">{event.name}</h3>
               <p className="text-gray-400 text-sm mb-2">{event.about}</p>
               <p className="text-sm text-emerald-300">
-                Date: <span className="text-white">{new Date(event.date).toLocaleDateString("en-GB")}</span>
+                Date:{" "}
+                <span className="text-white">
+                  {new Date(event.date).toLocaleDateString("en-GB")}
+                </span>
               </p>
-              <p className="text-sm text-emerald-300">Budget: <span className="text-white">₹{event.budget}</span></p>
-              <p className="text-sm text-emerald-300">Attendees: <span className="text-white">{event.attendees[0] || 0} </span></p>
-              <p className="text-sm text-emerald-300">Type: <span className="text-white">{event.eventType}</span></p>
+              <p className="text-sm text-emerald-300">
+                Budget: <span className="text-white">₹{event.budget}</span>
+              </p>
+              <p className="text-sm text-emerald-300">
+                Attendees: <span className="text-white">{event.attendees}</span>
+              </p>
+              <p className="text-sm text-emerald-300">
+                Type: <span className="text-white">{event.eventType}</span>
+              </p>
             </div>
           ))}
         </div>

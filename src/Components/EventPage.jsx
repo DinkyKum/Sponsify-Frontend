@@ -108,9 +108,7 @@ const EventPage = () => {
           <div>
             <h3 className="text-lg font-medium text-white">Expected Attendees</h3>
             <p className="text-gray-300">
-              {Array.isArray(event.attendees)
-                ? event.attendees.join(", ")
-                : event.attendees}
+              {event.attendees}
             </p>
           </div>
           <div>

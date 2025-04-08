@@ -90,7 +90,7 @@ const EventList = () => {
                     <p className="text-sm text-gray-400 mb-1 font-medium">
                       Expected Attendees:
                     </p>
-                    <p className="text-white text-sm">{event.attendees.length}</p>
+                    <p className="text-white text-sm">{event.attendees}</p>
                   </div>
                 </motion.div>
               </Link>
