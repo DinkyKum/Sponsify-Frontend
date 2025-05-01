@@ -38,7 +38,7 @@ const Navbar = () => {
 
         {!user ? (
           <Link to="/login" className="bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-2 px-4 rounded-md transition">
-            Sign Up
+            Login
           </Link>
         ) : (
           <button onClick={HandleLogout} className="bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-2 px-4 rounded-md transition">

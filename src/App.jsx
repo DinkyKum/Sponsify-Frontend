@@ -13,6 +13,7 @@ import AddEvent from "./Components/AddEvent";
 import EventPage from "./Components/EventPage";
 import Invest from "./Components/Invest";
 import MyDeals from "./Components/MyDeals";
+import Deal from "./Components/Deal";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
     <Route path="/addEvent" element={<AddEvent/>}/>
     <Route path="/invest/:id" element={<Invest/>}/>
     <Route path="/deals" element={<MyDeals/>}/>
+    <Route path="/deal/:id" element={<Deal/>}/>
     </Route>
     </Routes>
     </BrowserRouter>

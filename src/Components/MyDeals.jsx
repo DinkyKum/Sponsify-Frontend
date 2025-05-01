@@ -65,12 +65,6 @@ const MyDeals = () => {
                 Organized by: <span className="font-semibold text-white">{event.organizer.name}</span>
               </p>
             </div>
-            <button
-              className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-all duration-300"
-              onClick={() => navigate(`/event/${event._id}`)}
-            >
-              View Event
-            </button>
           </div>
 
           {/* Full-width sponsorship deal boxes */}
@@ -78,8 +72,22 @@ const MyDeals = () => {
             {deals.map((deal) => (
               <div
                 key={deal._id}
-                className="w-full bg-gray-700 hover:bg-gray-600 transition-all duration-300 border border-gray-600 rounded-lg p-5 shadow-md"
+                className="w-full bg-gray-700 hover:bg-gray-600 transition-all duration-300 border border-gray-600 rounded-lg p-5 shadow-md cursor-pointer"
+                onClick={() => navigate(`/deal/${deal._id}`, { state: { deal } })}
               >
+                {/* Deal Status Tag */}
+                <div className="flex justify-between items-center mb-2">
+                  <span
+                    className={`text-xs px-2 py-1 rounded-full ${
+                      deal.status === 'confirmed'
+                        ? 'bg-green-600 text-white'
+                        : 'bg-red-600 text-white'
+                    }`}
+                  >
+                    {deal.status === 'confirmed' ? 'Confirmed' : 'Pending'}
+                  </span>
+                </div>
+
                 <h3 className="text-xl font-semibold text-green-300">Sponsorship: {deal.type}</h3>
                 <p className="text-sm text-gray-200 mt-2">Methods: {deal.methods.join(', ')}</p>
                 {deal.description && (
