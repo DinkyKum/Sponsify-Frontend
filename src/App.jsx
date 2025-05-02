@@ -3,7 +3,7 @@ import Body from "./Components/Body";
 import Home from "./Components/Home";
 import Login from "./Components/Login";
 import { Provider } from "react-redux";
-import appStore from "./utils/appstore";
+import appStore from "./utils/appStore";
 import SponsorList from "./Components/SponsorList";
 import OrganizerList from "./Components/OrganizerList";
 import EventList from "./Components/EventList";
